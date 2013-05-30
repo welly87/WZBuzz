@@ -1,4 +1,5 @@
 ﻿using System;
+using PetroBuzz.Core;
 using SuperSocket.ClientEngine;
 using WebSocket4Net;
 
@@ -6,17 +7,25 @@ namespace PetroBuzz.Node
 {
     public class Node
     {
-        private WebSocket websocket;
+        private WebSocket _websocket;
+        private string _nodeName;
+        private MessageSerializer _serializer;
 
-        public void Connect(string p)
+        public Node(string nodeName)
         {
-            websocket = new WebSocket(p);
-            websocket.Opened += websocket_Opened;
-            websocket.Error += websocket_Error;
-            websocket.Closed += websocket_Closed;
-            websocket.MessageReceived += websocket_MessageReceived;
+            _nodeName = nodeName;
+            _serializer = new MessageSerializer();
+        }
 
-            websocket.Open();
+        public void Connect(string address)
+        {
+            _websocket = new WebSocket(address);
+            _websocket.Opened += websocket_Opened;
+            _websocket.Error += websocket_Error;
+            _websocket.Closed += websocket_Closed;
+            _websocket.MessageReceived += websocket_MessageReceived;
+
+            _websocket.Open();
         }
 
         private void websocket_MessageReceived(object sender, MessageReceivedEventArgs e)
@@ -37,12 +46,17 @@ namespace PetroBuzz.Node
         private void websocket_Opened(object sender, EventArgs e)
         {
             Console.WriteLine("Opened");
-            websocket.Send("Hai from client");
+            //_websocket.Send("Hai from client"); // register default nodes
         }
 
         public void Subscribe(string destination)
         {
-            
+            var message = new SubscriptionMessage
+                {
+                    Topic = destination
+                };
+
+            _websocket.Send(_serializer.Serialize(message));
         }
     }
 }

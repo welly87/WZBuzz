@@ -1,4 +1,5 @@
 ﻿using System;
+using PetroBuzz.Core;
 
 namespace PetroBuzz.SuperNode.Hosts
 {
@@ -13,7 +14,18 @@ namespace PetroBuzz.SuperNode.Hosts
 
             Console.ReadLine();
 
-            superNode.Send("tinynode", "hello world");
+            //superNode.Send("tinynode", new SimpleMessage
+            //    {
+            //        Message = "My very simple message"
+            //    });
+
+            superNode.Publish("tinynode", new SimpleMessage
+            {
+                Message = "My very simple message"
+            });
+
+
+            Console.ReadLine();
         }
     }
 }

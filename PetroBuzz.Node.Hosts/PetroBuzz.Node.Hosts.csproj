@@ -48,6 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PetroBuzz.Core\PetroBuzz.Core.csproj">
+      <Project>{99895c29-c9aa-4faa-8d73-e37a0df751cb}</Project>
+      <Name>PetroBuzz.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PetroBuzz.Node\PetroBuzz.Node.csproj">
       <Project>{172e2f51-c9f2-4e15-9ff5-4bf054751ace}</Project>
       <Name>PetroBuzz.Node</Name>

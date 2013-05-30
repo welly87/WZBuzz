@@ -33,6 +33,9 @@
     <Reference Include="Fleck">
       <HintPath>..\packages\Fleck.0.9.6.19\lib\net40\Fleck.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.48\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,11 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SessionManager.cs" />
     <Compile Include="SuperNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopicManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetroBuzz.Core\PetroBuzz.Core.csproj">
+      <Project>{99895c29-c9aa-4faa-8d73-e37a0df751cb}</Project>
+      <Name>PetroBuzz.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

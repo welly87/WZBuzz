@@ -6,8 +6,8 @@ namespace PetroBuzz.Node.Hosts
     {
         private static void Main(string[] args)
         {
-            var node = new Node();
-            node.Connect("ws://localhost:8181");
+            var node = new Node("tinynode");
+            node.Connect("ws://localhost:9999");
 
             Console.WriteLine("Enter to register to tiny node");
             Console.ReadLine();
